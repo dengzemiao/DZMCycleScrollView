@@ -39,6 +39,12 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     /// 初始化选中索引位置
     var initSelectIndex:NSInteger = 0
     
+    /// 开启定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 (由定时器跟手势切换即可 cycleScrollView.selectIndex 也可以使用)
+    var openTimer:Bool = false
+    
+    /// 定时器时间间隔
+    var timeInterval:TimeInterval = 2.0
+    
     /// 当前显示的索引
     var currentIndex:NSInteger = 0
     
@@ -85,8 +91,11 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     private let TempNumberOne:NSInteger = 1
     private let TempNumberTwo:NSInteger = 2
 
-    // 临时记录 用于next()
+    /// 临时记录 用于next()
     private var tempPoint:CGPoint? = nil
+    
+    /// 定时器
+    private var timer:Timer?
     
     /// 初始化方法
     class func cycleScrollView(views:[UIView],limitScroll:Bool) ->DZMCycleScrollView {
@@ -125,7 +134,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         addGestureRecognizer(tap)
     }
     
-    /// 下一页
+    /// 下一页 定时器使用 如果开启定时器不建议手动调用该方法 会混乱
     func next() {
         
         let count = views.count
@@ -180,7 +189,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     func selectIndex(index:NSInteger,animated:Bool) {
         
         if views.count > TempNumberOne && isInitComplete && (index >= 0 && index < views.count){ // 小于数组个数
-            
+         
             IsDragging = false
             
             var tempIndex = index
@@ -193,6 +202,12 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
             }
             
             if index != currentIndex {
+                
+                // 移除定时器
+                if openTimer {
+                    
+                    removeTimer()
+                }
                 
                 // 动画时间
                 let duration = animated ? animateDuration : 0
@@ -208,6 +223,13 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
                         self?.IsDragging = true
                         
                         self?.synchronization(self!.scrollView)
+                        
+                        // 开启定时器
+                        if self!.openTimer {
+                            
+                            self!.addTimer()
+                        }
+                        
                 })
             }
         }
@@ -215,6 +237,12 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     
     /// 创建 以及 重置 显示数组
     func setupViews(views:[UIView]) {
+        
+        // 移除定时器
+        if openTimer {
+            
+            removeTimer()
+        }
         
         // 清空
         for subview in scrollView.subviews {
@@ -233,6 +261,12 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         
         // 布局
         setNeedsLayout()
+        
+        // 开启定时器
+        if openTimer {
+            
+            addTimer()
+        }
     }
     
     /// 通过 view 获取截屏图片
@@ -345,6 +379,12 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     // MARK: -- UIScrollViewDelegate
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        // 移除定时器
+        if openTimer {
+            
+            removeTimer()
+        }
 
         IsDragging = true
         
@@ -354,6 +394,12 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         delegate?.cycleScrollViewDidEndDragging?(cycleScrollView: self)
+        
+        // 开启定时器
+        if openTimer {
+            
+            addTimer()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -517,6 +563,38 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
             delegate?.cycleScrollView?(cycleScrollView: self, scrollToIndex: currentIndex)
         }
     }
+    
+    
+    // MARK: -- 定时器 ---------------------------
+    
+    /// 添加计时器
+    private func addTimer() {
+        
+        if views.count > TempNumberOne {
+            
+            timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(DZMCycleScrollView.nextPage), userInfo: nil, repeats: true)
+            
+            RunLoop.current.add(timer!, forMode: RunLoopMode.commonModes)
+        }
+    }
+    
+    /// 删除定时器
+    private func removeTimer() {
+        
+        if timer != nil {
+            
+            timer?.invalidate()
+            
+            timer = nil
+        }
+    }
+    
+    /// func 定时器调用
+    @objc private func nextPage() {
+        
+        next()
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         
