@@ -69,6 +69,22 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
+    /// scrollView.contentSize
+    var contentSize:CGSize {
+        
+        get{
+            return scrollView.contentSize
+        }
+    }
+    
+    /// scrollView.contentOffset
+    var contentOffset:CGPoint {
+        
+        get{
+            return scrollView.contentOffset
+        }
+    }
+    
     
     // MARK: -- 私有属性
     
