@@ -49,13 +49,29 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
 //        view.addSubview(cycleScrollView);
 //        cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
         
+        
         // 创建方式二
         cycleScrollView = DZMCycleScrollView()
         cycleScrollView.delegate = self
+        
+        // 是否开启无限滚动
         cycleScrollView.limitScroll = true
-        // 初始化选中位置
-        cycleScrollView.initSelectIndex = 3
+        
+        // 动画时间
+//        cycleScrollView.animateDuration = 0.25
+        
+        // 初始化选中页面
+//        cycleScrollView.initSelectIndex = 0
+        
+        // 是否开启点击手势
+//        cycleScrollView.openTap = false
+        
+        // 允许滚动控件有额外滚动区域 scrollView.bounces
+//        cycleScrollView.bounces = true
+        
+        // 传view数组即可 包括 控制器View
         cycleScrollView.setupViews(views: [view1,view2,view3,view4])
+        
         view.addSubview(cycleScrollView)
         cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
         
@@ -66,8 +82,28 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
          3.支持 控制器View 无限轮播使用 可用于做导航栏轮播View
          4.支持点击手势的开关(传按钮数组的话可以关掉点击手势)  以及回调代理
          
-         /// 是否开启点击手势
-         var openTap:Bool = true
+         ----定时器使用:
+         
+         cycleScrollView.next() 即可自定进行下一页
+         
+         ----手动选择页面: 可选动画
+         
+         cycleScrollView.selectIndex(index: NSInteger, animated: Bool)
+         
+         ----中途动态切换轮播View数组:
+         
+         cycleScrollView.setupViews(views: [view1,view2])
+         
+         ----代理:
+         
+         /// 开始拖拽
+         @objc optional func cycleScrollViewWillBeginDragging(cycleScrollView:DZMCycleScrollView)
+         
+         /// 结束拖拽
+         @objc optional func cycleScrollViewDidEndDragging(cycleScrollView:DZMCycleScrollView)
+         
+         /// 正在滚动
+         @objc optional func cycleScrollViewDidScroll(cycleScrollView:DZMCycleScrollView)
          
          /// 滚动到哪一个index
          @objc optional func cycleScrollView(cycleScrollView:DZMCycleScrollView,scrollToIndex index:NSInteger)
@@ -109,6 +145,7 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
     
     
     // MARK: -- DZMCycleScrollViewDelegate
+    
     func cycleScrollView(cycleScrollView: DZMCycleScrollView, touchToIndex index: NSInteger) {
         
         print("点击了 \(index)")
