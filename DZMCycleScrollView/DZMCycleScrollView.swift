@@ -45,7 +45,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     /// 初始化选中索引位置
     var initSelectIndex:NSInteger = 0
     
-    /// 开启定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 (由定时器跟手势切换即可 cycleScrollView.selectIndex 也可以使用)
+    /// 开启定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 (由定时器跟手势切换即可 cycleScrollView.scrollIndex 也可以使用)
     var openTimer:Bool = false
     
     /// 定时器时间间隔
