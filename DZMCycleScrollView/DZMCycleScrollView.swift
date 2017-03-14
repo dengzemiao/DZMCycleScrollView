@@ -19,6 +19,12 @@ import UIKit
     /// 正在滚动
     @objc optional func cycleScrollViewDidScroll(cycleScrollView:DZMCycleScrollView)
     
+    /// 准备减速
+    @objc optional func cycleScrollViewWillBeginDecelerating(cycleScrollView:DZMCycleScrollView)
+    
+    /// 停止滚动
+    @objc optional func cycleScrollViewDidEndDecelerating(cycleScrollView:DZMCycleScrollView)
+    
     /// 滚动到哪一个index
     @objc optional func cycleScrollView(cycleScrollView:DZMCycleScrollView,scrollToIndex index:NSInteger)
     
@@ -69,7 +75,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    /// scrollView.contentSize
+    /// scrollView.contentSize 只允许获取
     var contentSize:CGSize {
         
         get{
@@ -77,7 +83,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    /// scrollView.contentOffset
+    /// scrollView.contentOffset 只允许获取
     var contentOffset:CGPoint {
         
         get{
@@ -394,6 +400,16 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     
     // MARK: -- UIScrollViewDelegate
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if IsDragging {
+            
+            synchronization(scrollView)
+        }
+        
+        delegate?.cycleScrollViewDidScroll?(cycleScrollView: self)
+    }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         
         // 移除定时器
@@ -418,14 +434,14 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         
-        if IsDragging {
-            
-            synchronization(scrollView)
-        }
+        delegate?.cycleScrollViewWillBeginDecelerating?(cycleScrollView: self)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        delegate?.cycleScrollViewDidScroll?(cycleScrollView: self)
+        delegate?.cycleScrollViewDidEndDecelerating?(cycleScrollView: self)
     }
     
     /// 计算位置

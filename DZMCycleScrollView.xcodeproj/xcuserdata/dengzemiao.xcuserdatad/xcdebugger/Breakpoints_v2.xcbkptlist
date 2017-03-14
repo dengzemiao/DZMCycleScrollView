@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DZMCycleScrollView/DZMCycleScrollView.swift"
-            timestampString = "511086624.605544"
+            timestampString = "511154085.292824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "502"
-            endingLineNumber = "502"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
             landmarkName = "synchronization(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DZMCycleScrollView/DZMCycleScrollView.swift"
-            timestampString = "511086624.605544"
+            timestampString = "511154085.292824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
+            startingLineNumber = "511"
+            endingLineNumber = "511"
             landmarkName = "synchronization(_:)"
             landmarkType = "7">
          </BreakpointContent>

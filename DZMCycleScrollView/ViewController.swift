@@ -111,6 +111,12 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
          /// 正在滚动
          @objc optional func cycleScrollViewDidScroll(cycleScrollView:DZMCycleScrollView)
          
+         /// 准备减速
+         @objc optional func cycleScrollViewWillBeginDecelerating(cycleScrollView:DZMCycleScrollView)
+         
+         /// 停止滚动
+         @objc optional func cycleScrollViewDidEndDecelerating(cycleScrollView:DZMCycleScrollView)
+         
          /// 滚动到哪一个index
          @objc optional func cycleScrollView(cycleScrollView:DZMCycleScrollView,scrollToIndex index:NSInteger)
          
@@ -148,7 +154,7 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
     // 选中指定索引 可选择动画
     @IBAction func selectIndex(_ sender: Any) {
         
-        cycleScrollView.selectIndex(index: (label.text! as NSString).integerValue, animated: true)
+        cycleScrollView.scrollIndex(index: (label.text! as NSString).integerValue, animated: true)
     }
     
     
@@ -179,7 +185,17 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
         
 //        print("正在滚动")
     }
-
+    
+    func cycleScrollViewWillBeginDecelerating(cycleScrollView: DZMCycleScrollView) {
+        
+//        print("准备减速")
+    }
+    
+    func cycleScrollViewDidEndDecelerating(cycleScrollView: DZMCycleScrollView) {
+        
+//        print("结束减速")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
