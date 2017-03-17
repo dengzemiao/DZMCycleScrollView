@@ -146,7 +146,6 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isPagingEnabled = true
-        scrollView.alwaysBounceHorizontal = true
         scrollView.delegate = self
         scrollView.bounces = bounces
         addSubview(scrollView)
