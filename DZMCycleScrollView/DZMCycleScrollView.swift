@@ -599,9 +599,9 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     // MARK: -- 定时器 ---------------------------
     
     /// 添加计时器
-    private func addTimer() {
+    func addTimer() {
         
-        if views.count > TempNumberOne {
+        if timer == nil && views.count > TempNumberOne {
             
             timer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(DZMCycleScrollView.nextPage), userInfo: nil, repeats: true)
             
@@ -610,7 +610,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     }
     
     /// 删除定时器
-    private func removeTimer() {
+    func removeTimer() {
         
         if timer != nil {
             
