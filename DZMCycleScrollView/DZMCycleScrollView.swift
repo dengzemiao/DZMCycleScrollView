@@ -626,6 +626,11 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         next()
     }
     
+    /// 清理
+    deinit {
+        
+        removeTimer()
+    }
     
     required init?(coder aDecoder: NSCoder) {
         
