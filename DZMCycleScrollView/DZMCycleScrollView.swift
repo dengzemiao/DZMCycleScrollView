@@ -119,16 +119,36 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     /// 定时器
     private var timer:Timer?
     
-    /// 初始化方法
-    class func cycleScrollView(views:[UIView],limitScroll:Bool) ->DZMCycleScrollView {
+    /// 初始化方法 不带定时器 初始化选中: 默认选中0
+    class func cycleScrollView(views:[UIView],limitScroll:Bool,delegate:DZMCycleScrollViewDelegate?) ->DZMCycleScrollView {
+        
+        return self.cycleScrollView(views: views, limitScroll: limitScroll, initSelectIndex: 0, delegate: delegate)
+    }
+    
+    /// 初始化方法 不带定时器 手动设置初始化选中
+    class func cycleScrollView(views:[UIView],limitScroll:Bool,initSelectIndex:NSInteger,delegate:DZMCycleScrollViewDelegate?) ->DZMCycleScrollView {
+        
+       return self.cycleScrollView(views: views, limitScroll: limitScroll, initSelectIndex: initSelectIndex, openTimer: false, timeInterval: 0, delegate: delegate)
+    }
+    
+    /// 初始化方法 可选定时器 手动设置初始化选中
+    class func cycleScrollView(views:[UIView],limitScroll:Bool,initSelectIndex:NSInteger,openTimer:Bool,timeInterval:TimeInterval,delegate:DZMCycleScrollViewDelegate?) ->DZMCycleScrollView {
         
         let cycleScrollView = DZMCycleScrollView()
         
+        cycleScrollView.delegate = delegate
+        
         cycleScrollView.limitScroll = limitScroll
+        
+        cycleScrollView.initSelectIndex = initSelectIndex
+        
+        cycleScrollView.openTimer = openTimer
+        
+        cycleScrollView.timeInterval = timeInterval
         
         cycleScrollView.setupViews(views: views)
         
-        return cycleScrollView;
+        return cycleScrollView
     }
     
     /// 初始化方法

@@ -44,8 +44,7 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
         view4.backgroundColor = UIColor.blue
         
         // 创建方法一
-//        cycleScrollView = DZMCycleScrollView.cycleScrollView(views: [view1,view2,view3,view4],limitScroll: true)
-//        cycleScrollView.delegate = self
+//        cycleScrollView = DZMCycleScrollView.cycleScrollView(views: [view1,view2,view3,view4],limitScroll: true, delegate:self)
 //        view.addSubview(cycleScrollView);
 //        cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
         
