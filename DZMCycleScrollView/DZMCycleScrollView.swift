@@ -334,31 +334,6 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    /// 通过 view 获取截屏图片
-    private func imageWithView(view:UIView?) ->UIImage? {
-        
-        var image:UIImage? = nil
-        
-        if (view != nil) {
-            
-            UIGraphicsBeginImageContextWithOptions(view!.frame.size, false, 0.5)
-            
-            let context = UIGraphicsGetCurrentContext()
-            
-            if (context != nil) {
-                
-                view!.layer.render(in: context!)
-                
-                image = UIGraphicsGetImageFromCurrentImageContext()
-                
-            }
-            
-            UIGraphicsEndImageContext()
-        }
-        
-        return image
-    }
-    
     /// scrollView layoutSubviews
     private func scrollViewSetNeedsLayout() {
         
