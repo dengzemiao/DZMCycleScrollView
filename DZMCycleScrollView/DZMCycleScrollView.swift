@@ -433,7 +433,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     }
     
     /// 手势点击
-    private func clickTap(tap:UITapGestureRecognizer) {
+    @objc private func clickTap(tap:UITapGestureRecognizer) {
         
         if (views.count > 0) {
             
