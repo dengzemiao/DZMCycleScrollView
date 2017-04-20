@@ -274,29 +274,42 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
                     removeTimer()
                 }
                 
-                // 动画时间
-                let duration = animated ? animateDuration : 0
-                
+                // 动画
                 let w = frame.size.width
                 
-                UIView.animate(withDuration: duration, animations: { [weak self] ()->Void in
+                if animated {
                     
-                    self?.scrollView.contentOffset = CGPoint(x: CGFloat(tempIndex) * w, y: 0)
-                    
-                    }, completion: {[weak self] (isOK) in
+                    UIView.animate(withDuration: animateDuration, animations: { [weak self] ()->Void in
                         
-                        self?.IsDragging = true
+                        self?.scrollView.contentOffset = CGPoint(x: CGFloat(tempIndex) * w, y: 0)
                         
-                        self?.synchronization(self!.scrollView)
-                        
-                        // 开启定时器
-                        if self!.openTimer {
+                        }, completion: {[weak self] (isOK) in
                             
-                            self!.addTimer()
-                        }
-                        
-                })
+                            self?.animateCompletion()
+                    })
+                    
+                }else{
+                    
+                    scrollView.contentOffset = CGPoint(x: CGFloat(tempIndex) * w, y: 0)
+                    
+                    animateCompletion()
+                }
+                
             }
+        }
+    }
+    
+    /// 动画完成
+    private func animateCompletion() {
+        
+        IsDragging = true
+        
+        synchronization(scrollView)
+        
+        // 开启定时器
+        if openTimer {
+            
+            addTimer()
         }
     }
     
