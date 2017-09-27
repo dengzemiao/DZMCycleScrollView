@@ -192,6 +192,9 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         scrollView.isScrollEnabled = isScrollEnabled
         scrollView.delegate = self
         scrollView.bounces = bounces
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
         addSubview(scrollView)
         
         // 点击手势
