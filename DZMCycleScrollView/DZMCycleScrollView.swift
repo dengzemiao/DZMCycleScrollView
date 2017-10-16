@@ -57,6 +57,19 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     /// 动画时间
     var animateDuration:TimeInterval = 0.25
     
+    /// 该属性代替 automaticallyAdjustsScrollViewInsets 进行范围约束
+    @available(iOS 11.0, *)
+    var contentInsetAdjustmentBehavior: UIScrollViewContentInsetAdjustmentBehavior {
+
+        get{
+            return scrollView.contentInsetAdjustmentBehavior
+        }
+        
+        set{
+            scrollView.contentInsetAdjustmentBehavior = newValue
+        }
+    }
+    
     /// scrollView.isScrollEnabled
     var isScrollEnabled:Bool = true {
         
@@ -101,7 +114,6 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
         
         set{
-            
             scrollView.contentOffset = newValue
         }
     }
@@ -176,6 +188,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     
     /// 初始化方法
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
         
         initSub()
@@ -192,9 +205,6 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         scrollView.isScrollEnabled = isScrollEnabled
         scrollView.delegate = self
         scrollView.bounces = bounces
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        }
         addSubview(scrollView)
         
         // 点击手势
@@ -252,7 +262,6 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    
     /// 手动选择显示对象 可选择动画
     func scrollIndex(index:NSInteger,animated:Bool) {
         
@@ -302,18 +311,10 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    /// 动画完成
-    private func animateCompletion() {
+    /// 刷新(使用原数据重置UI)
+    func reloadData() {
         
-        IsDragging = true
-        
-        synchronization(scrollView)
-        
-        // 开启定时器
-        if openTimer {
-            
-            addTimer()
-        }
+        setupViews(views: self.views)
     }
     
     /// 创建 以及 重置 显示数组
@@ -342,6 +343,20 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         
         // 布局
         setNeedsLayout()
+        
+        // 开启定时器
+        if openTimer {
+            
+            addTimer()
+        }
+    }
+    
+    /// 动画完成
+    private func animateCompletion() {
+        
+        IsDragging = true
+        
+        synchronization(scrollView)
         
         // 开启定时器
         if openTimer {
@@ -414,6 +429,7 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     
     /// layoutSubviews
     override func layoutSubviews() {
+        
         super.layoutSubviews()
 
         // 滚动区域
