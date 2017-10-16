@@ -7,17 +7,17 @@
     UIPageControl可在继承该控件之后自己添加即可 有代理回调 下面有例子
 
 ***
-#### 效果
+#### 效果:
 ![CarouselView in action](icon0.gif)
 
 ***
-#### 初始化方法介绍
+#### 初始化方法介绍:
 ![CarouselView in action](icon1.png)
 
 ***
-#### 项目功能介绍
+#### 项目功能介绍:
 ![CarouselView in action](icon2.png)
 
 ***
-#### UIPageControl 例子
+#### UIPageControl 例子:
 ![CarouselView in action](icon3.png)
