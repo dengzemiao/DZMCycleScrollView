@@ -8,16 +8,16 @@
 
 ***
 #### 效果:
-![CarouselView in action](icon0.gif)
+![效果](icon0.gif)
 
 ***
-#### 初始化方法介绍:
-![CarouselView in action](icon1.png)
+#### 初始化介绍:
+![初始化介绍](icon1.png)
 
 ***
-#### 项目功能介绍:
-![CarouselView in action](icon2.png)
+#### 功能介绍:
+![功能介绍](icon2.png)
 
 ***
 #### UIPageControl 例子:
-![CarouselView in action](icon3.png)
+![UIPageControl 例子](icon3.png)
