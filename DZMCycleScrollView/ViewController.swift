@@ -44,87 +44,43 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
         view4.backgroundColor = UIColor.blue
         
         // 创建方法一
-//        cycleScrollView = DZMCycleScrollView.cycleScrollView(views: [view1,view2,view3,view4],limitScroll: true, delegate:self)
-//        view.addSubview(cycleScrollView);
-//        cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
-        
-        
-        // 创建方式二
-        cycleScrollView = DZMCycleScrollView()
-        
-        cycleScrollView.delegate = self
-        
-        // 是否开启无限滚动
-        cycleScrollView.limitScroll = true
-        
-        // 动画时间
-        cycleScrollView.animateDuration = 0.25
-        
-        // 初始化选中页面
-        cycleScrollView.initSelectIndex = 0
-        
-        // 是否开启点击手势
-        cycleScrollView.openTap = false
-        
-        // 允许滚动控件有额外滚动区域 scrollView.bounces
-        cycleScrollView.bounces = true
-        
-        // 添加定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 由定时器跟手势切换即可 cycleScrollView.selectIndex 也可以使用
-        cycleScrollView.openTimer = true
-        
-        // 定时器间隔时间
-        cycleScrollView.timeInterval = 1.0
-        
-        // 传view数组即可 包括 控制器View
-        cycleScrollView.setupViews(views: [view1,view2,view3,view4])
-        
-        view.addSubview(cycleScrollView)
+        cycleScrollView = DZMCycleScrollView.cycleScrollView(views: [view1,view2,view3,view4],limitScroll: true, delegate:self)
+        view.addSubview(cycleScrollView);
         cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
         
-        /*
-         无限轮播 直接传入View数组即可轮播 方便了自定义View
-         1.支持中途修改轮播数组
-         2.可在重置过程中 随意切换 无限轮播 以及 不无限轮播
-         3.支持 控制器View 无限轮播使用 可用于做导航栏轮播View
-         4.支持点击手势的开关(传按钮数组的话可以关掉点击手势)  以及回调代理
-         
-         ----定时器使用:
-         
-         cycleScrollView.next() 即可自定进行下一页
-         
-         ----手动选择页面: 可选动画
-         
-         cycleScrollView.selectIndex(index: NSInteger, animated: Bool)
-         
-         ----中途动态切换轮播View数组:
-         
-         cycleScrollView.setupViews(views: [view1,view2])
-         
-         ----代理:
-         
-         /// 开始拖拽
-         @objc optional func cycleScrollViewWillBeginDragging(cycleScrollView:DZMCycleScrollView)
-         
-         /// 结束拖拽
-         @objc optional func cycleScrollViewDidEndDragging(cycleScrollView:DZMCycleScrollView)
-         
-         /// 正在滚动
-         @objc optional func cycleScrollViewDidScroll(cycleScrollView:DZMCycleScrollView)
-         
-         /// 准备减速
-         @objc optional func cycleScrollViewWillBeginDecelerating(cycleScrollView:DZMCycleScrollView)
-         
-         /// 停止滚动
-         @objc optional func cycleScrollViewDidEndDecelerating(cycleScrollView:DZMCycleScrollView)
-         
-         /// 滚动到哪一个index
-         @objc optional func cycleScrollView(cycleScrollView:DZMCycleScrollView,scrollToIndex index:NSInteger)
-         
-         /// 点击了哪一个index
-         @objc optional func cycleScrollView(cycleScrollView:DZMCycleScrollView,touchToIndex index:NSInteger)
-         
-         */
         
+//        // 创建方式
+//        cycleScrollView = DZMCycleScrollView()
+//
+//        cycleScrollView.delegate = self
+//
+//        // 是否开启无限滚动
+//        cycleScrollView.limitScroll = true
+//
+//        // 动画时间
+//        cycleScrollView.animateDuration = 0.25
+//
+//        // 初始化选中页面
+//        cycleScrollView.initSelectIndex = 0
+//
+//        // 是否开启点击手势
+//        cycleScrollView.openTap = false
+//
+//        // 允许滚动控件有额外滚动区域 scrollView.bounces
+//        cycleScrollView.bounces = true
+//
+//        // 添加定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 由定时器跟手势切换即可 cycleScrollView.selectIndex 也可以使用
+//        cycleScrollView.openTimer = true
+//
+//        // 定时器间隔时间
+//        cycleScrollView.timeInterval = 1.0
+//
+//        // 传view数组即可 包括 控制器View
+//        cycleScrollView.setupViews(views: [view1,view2,view3,view4])
+//
+//        view.addSubview(cycleScrollView)
+//
+//        cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 100)
         
     }
     
