@@ -31,6 +31,10 @@
     ......
     
 ***
+#### 控制器无限轮播例子:
+###### [https://github.com/dengzemiao/DZMTOPTabBarController](https://github.com/dengzemiao/DZMTOPTabBarController)
+
+***
 #### 代码介绍 ( Swift ) :
 
 ##### 创建方法例子:
