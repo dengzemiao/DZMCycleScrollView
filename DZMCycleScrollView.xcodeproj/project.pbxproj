@@ -99,13 +99,13 @@
 		AF367D601E725040008AF3B3 /* DZMCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				AF367D8F1E725063008AF3B3 /* DZMCycleScrollView.swift */,
 				AF367D611E725040008AF3B3 /* AppDelegate.swift */,
 				AF367D631E725040008AF3B3 /* ViewController.swift */,
 				AF367D651E725040008AF3B3 /* Main.storyboard */,
 				AF367D681E725040008AF3B3 /* Assets.xcassets */,
 				AF367D6A1E725040008AF3B3 /* LaunchScreen.storyboard */,
 				AF367D6D1E725040008AF3B3 /* Info.plist */,
-				AF367D8F1E725063008AF3B3 /* DZMCycleScrollView.swift */,
 			);
 			path = DZMCycleScrollView;
 			sourceTree = "<group>";
