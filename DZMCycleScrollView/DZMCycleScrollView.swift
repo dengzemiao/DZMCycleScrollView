@@ -314,7 +314,10 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     /// 刷新(使用原数据重置UI)
     func reloadData() {
         
-        setupViews(views: self.views)
+        if !views.isEmpty {
+            
+            setupViews(views: views)
+        }
     }
     
     /// 创建 以及 重置 显示数组

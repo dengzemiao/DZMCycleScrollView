@@ -58,22 +58,22 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
         cycleScrollView.limitScroll = true
         
         // 动画时间
-//        cycleScrollView.animateDuration = 0.25
+        cycleScrollView.animateDuration = 0.25
         
         // 初始化选中页面
-//        cycleScrollView.initSelectIndex = 0
+        cycleScrollView.initSelectIndex = 0
         
         // 是否开启点击手势
-//        cycleScrollView.openTap = false
+        cycleScrollView.openTap = false
         
         // 允许滚动控件有额外滚动区域 scrollView.bounces
-//        cycleScrollView.bounces = true
+        cycleScrollView.bounces = true
         
         // 添加定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 由定时器跟手势切换即可 cycleScrollView.selectIndex 也可以使用
-//        cycleScrollView.openTimer = true
+        cycleScrollView.openTimer = true
         
         // 定时器间隔时间
-//        cycleScrollView.timeInterval = 1.0
+        cycleScrollView.timeInterval = 1.0
         
         // 传view数组即可 包括 控制器View
         cycleScrollView.setupViews(views: [view1,view2,view3,view4])
