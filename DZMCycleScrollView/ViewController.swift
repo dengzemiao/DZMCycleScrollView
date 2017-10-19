@@ -51,6 +51,7 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
         
         // 创建方式二
         cycleScrollView = DZMCycleScrollView()
+        
         cycleScrollView.delegate = self
         
         // 是否开启无限滚动
