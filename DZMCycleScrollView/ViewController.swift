@@ -64,12 +64,12 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
 //        cycleScrollView.initSelectIndex = 0
 //
 //        // 是否开启点击手势
-//        cycleScrollView.openTap = false
+//        cycleScrollView.openTap = true
 //
 //        // 允许滚动控件有额外滚动区域 scrollView.bounces
 //        cycleScrollView.bounces = true
 //
-//        // 添加定时器 如果开启了定时器不建议手动调用 next() 会照成混乱 由定时器跟手势切换即可 cycleScrollView.selectIndex 也可以使用
+//        // 添加定时器
 //        cycleScrollView.openTimer = true
 //
 //        // 定时器间隔时间
@@ -89,10 +89,7 @@ class ViewController: UIViewController,DZMCycleScrollViewDelegate {
     // 下一个 用于定时器使用方便
     @IBAction func next(_ sender: Any) {
         
-        if !cycleScrollView.openTimer { // 如果开启定时器不建议手动调用该方法 会混乱
-            
-            cycleScrollView.next()
-        }
+        cycleScrollView.next()
     }
     
     // 动态更换轮播数组

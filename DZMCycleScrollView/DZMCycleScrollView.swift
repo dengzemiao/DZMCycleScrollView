@@ -262,10 +262,10 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    /// 手动选择显示对象 可选择动画
+    /// 手动选择显示对象 可选择动画 (使用定时器轮播时不建议使用)
     func scrollIndex(index:NSInteger,animated:Bool) {
         
-        if views.count > TempNumberOne && isInitComplete && (index >= 0 && index < views.count){ // 小于数组个数
+        if !openTimer && views.count > TempNumberOne && isInitComplete && (index >= 0 && index < views.count){ // 小于数组个数
          
             IsDragging = false
             

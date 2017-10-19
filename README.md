@@ -60,7 +60,7 @@ cycleScrollView.animateDuration = 0.25
 cycleScrollView.initSelectIndex = 0
 
 // 是否开启点击手势
-cycleScrollView.openTap = false
+cycleScrollView.openTap = true
 
 // 允许滚动控件有额外滚动区域
 cycleScrollView.bounces = true
@@ -85,8 +85,8 @@ cycleScrollView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.widt
 // 调用即可滚动到下一页
 cycleScrollView.next()
 
-// 选定并滚动到指定位置
-cycleScrollView.selectIndex(index: NSInteger, animated: Bool)
+// 选定并滚动到指定位置 (使用定时器轮播时不建议使用)
+cycleScrollView.scrollIndex(index: NSInteger, animated: Bool)
 
 // setupViews() 设置滚动Views 在有值情况下使用该方法赋值可以重置为新的Views
 cycleScrollView.setupViews(views: [view1,view2])
