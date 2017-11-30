@@ -683,6 +683,17 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
     /// 清理
     deinit {
         
+        for view in views {
+            
+            view.removeFromSuperview()
+        }
+        
+        views.removeAll()
+        
+        scrollView.removeFromSuperview()
+        
+        removeGestureRecognizer(tap)
+        
         removeTimer()
     }
     
