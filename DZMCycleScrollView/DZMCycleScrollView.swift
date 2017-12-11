@@ -338,19 +338,23 @@ class DZMCycleScrollView: UIView,UIScrollViewDelegate {
         // 记录最新的views
         self.views = views;
         
-        // 添加
-        for subview in views {
+        // 是否有视图
+        if !views.isEmpty {
             
-            scrollView.addSubview(subview)
-        }
-        
-        // 布局
-        setNeedsLayout()
-        
-        // 开启定时器
-        if openTimer {
+            // 添加
+            for subview in views {
+                
+                scrollView.addSubview(subview)
+            }
             
-            addTimer()
+            // 布局
+            setNeedsLayout()
+            
+            // 开启定时器
+            if openTimer {
+                
+                addTimer()
+            }
         }
     }
     
